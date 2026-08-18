@@ -11,6 +11,13 @@ machine — there is no cloud provider, registry or managed CI in this platform.
 
 Both servers bind `process.env.PORT`; the ports above are only dev fallbacks.
 
+> **Caution — port 6000.** Chrome and Firefox block requests to port 6000
+> (`ERR_UNSAFE_PORT`), so the SPA's browser-side `fetch` to the backend will fail
+> even though `curl` succeeds. If the catalogue does not render, re-run the
+> backend on an unrestricted port and rebuild the frontend against it, e.g.
+> `PORT=8080 node dist/server.js` + `VITE_BACKEND_URL=http://localhost:8080 npm run build`.
+> Nothing is hardcoded — both sides read this from the environment.
+
 ## Environment variables
 
 Backend (`apps/backend`):
