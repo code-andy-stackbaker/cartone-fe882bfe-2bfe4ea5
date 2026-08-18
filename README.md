@@ -10,18 +10,22 @@ by default, so the app builds and runs with **zero configuration**.
 
 ## Packages
 
-| Package | Dir | Install | Build | Test | Start | Dev port |
+| Package | Dir | Install | Build | Test | Start | Local dev port |
 | --- | --- | --- | --- | --- | --- | --- |
-| frontend | `apps/frontend` | `npm install` | `npm run build` | `npm test` | `npx serve -s dist -l $PORT` | 5173 |
-| backend | `apps/backend` | `npm install` | `npm run build` | `npm test` | `node dist/server.js` | 8080 |
+| frontend | `apps/frontend` | `npm install` | `npm run build` | `npm test` | `npx serve -s dist -l $PORT` | **5000** |
+| backend | `apps/backend` | `npm install` | `npm run build` | `npm test` | `node dist/server.js` | **6000** |
+
+Locally the app runs at <http://localhost:5000> (SPA) talking to <http://localhost:6000> (API).
 
 ## Runtime configuration (all optional — see `.env.example`)
 
-- Backend binds `process.env.PORT` (dev fallback 8080).
+- Backend binds `process.env.PORT`; **6000** is only the local dev fallback.
+- Frontend dev/preview server listens on **5000** (`vite.config.ts`); the production
+  bundle is served by `npx serve -s dist -l $PORT`, so the deploy port is injected.
 - Backend CORS allowlist comes from `ALLOWED_ORIGINS` (comma-separated);
-  permissive when unset so local dev works.
+  permissive when unset so `http://localhost:5000` works with zero config.
 - Frontend reads the API base URL from the build-time `VITE_BACKEND_URL`
-  (falls back to `http://localhost:8080`).
+  (falls back to `http://localhost:6000`).
 
 ## API
 
@@ -45,6 +49,9 @@ by default, so the app builds and runs with **zero configuration**.
 ## Local development
 
 ```bash
+# API on http://localhost:6000
 cd apps/backend  && npm install && npm run build && node dist/server.js
+
+# SPA on http://localhost:5000 (talks to the API above)
 cd apps/frontend && npm install && npm run dev
 ```

@@ -28,7 +28,7 @@ jobs:
       run:
         working-directory: apps/frontend
     env:
-      VITE_BACKEND_URL: http://localhost:8080
+      VITE_BACKEND_URL: http://localhost:6000
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

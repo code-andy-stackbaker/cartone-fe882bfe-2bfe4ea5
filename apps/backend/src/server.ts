@@ -1,6 +1,7 @@
 import { createApp } from "./app";
 
-const DEV_FALLBACK_PORT = 8080;
+/** Dev fallback only — the platform injects PORT at deploy. */
+const DEV_FALLBACK_PORT = 6000;
 const port = Number(process.env.PORT) || DEV_FALLBACK_PORT;
 
 createApp().listen(port, () => {

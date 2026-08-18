@@ -12,6 +12,6 @@ ENV NODE_ENV=production
 COPY apps/backend/package*.json ./
 RUN npm install --omit=dev
 COPY --from=build /app/dist ./dist
-ENV PORT=8080
-EXPOSE 8080
+ENV PORT=6000
+EXPOSE 6000
 CMD ["node", "dist/server.js"]

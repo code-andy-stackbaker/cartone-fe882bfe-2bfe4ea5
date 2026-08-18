@@ -2,7 +2,7 @@ import { CheckoutRequest, CheckoutSuccess, Product } from "../types";
 
 /** The only place a backend URL appears. Baked in at build time by Vite. */
 const BASE_URL = (
-  import.meta.env.VITE_BACKEND_URL ?? "http://localhost:8080"
+  import.meta.env.VITE_BACKEND_URL ?? "http://localhost:6000"
 ).replace(/\/$/, "");
 
 export class ApiFieldError extends Error {
